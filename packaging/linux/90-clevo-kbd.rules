@@ -1,0 +1,16 @@
+# Lets members of the clevo-kbd group change the keyboard backlight without root.
+#
+# Grants write access to two attributes on keyboard backlight LEDs and nothing
+# else. GROUP= and MODE= only apply to /dev nodes, and an LED class device has
+# none, so the attributes are changed directly. The match also covers the _1 and
+# _2 suffixes the kernel gives duplicate LED names.
+ACTION!="add", GOTO="clevo_kbd_end"
+SUBSYSTEM!="leds", GOTO="clevo_kbd_end"
+KERNEL!="*:kbd_backlight*", GOTO="clevo_kbd_end"
+
+RUN+="/usr/bin/chgrp clevo-kbd %S%p/brightness"
+RUN+="/usr/bin/chmod g+w %S%p/brightness"
+TEST=="multi_intensity", RUN+="/usr/bin/chgrp clevo-kbd %S%p/multi_intensity"
+TEST=="multi_intensity", RUN+="/usr/bin/chmod g+w %S%p/multi_intensity"
+
+LABEL="clevo_kbd_end"

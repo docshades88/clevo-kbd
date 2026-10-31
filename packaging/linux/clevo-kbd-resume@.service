@@ -1,0 +1,13 @@
+# A system unit because a user manager has no sleep targets. It runs as the user
+# named after the @, so it holds no privilege.
+[Unit]
+Description=Restore the saved keyboard backlight after resume for %i
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+User=%i
+ExecStart=/home/%i/.local/bin/clevo-kbd apply
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

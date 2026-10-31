@@ -1,0 +1,14 @@
+[Unit]
+Description=Restore the saved keyboard backlight at login
+StartLimitIntervalSec=120
+StartLimitBurst=5
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/clevo-kbd apply
+# The LED devices can appear shortly after the user manager starts.
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
