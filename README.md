@@ -18,8 +18,8 @@ Everything else is untested, including other Clevo models and this model on othe
 firmware.
 
 On that machine the window, the commands and restore at login have run on the real
-keyboard. Restore after resume has not finished a run there yet. The colours came
-through a suspend without it.
+keyboard. Restore after resume was seen to finish once there. The colours came through a
+suspend without it.
 
 ## What it needs
 
